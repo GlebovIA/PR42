@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Context\" />
     <Folder Include="Images\" />
-    <Folder Include="Modell\" />
     <Folder Include="ViewModell\" />
   </ItemGroup>
 
