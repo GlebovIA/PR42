@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Context\" />
     <Folder Include="Images\" />
     <Folder Include="ViewModell\" />
   </ItemGroup>

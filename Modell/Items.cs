@@ -46,7 +46,7 @@ namespace PR42.Modell
             }
         }
         private Categories _category;
-        public double Category
+        public Categories Category
         {
             get { return _category; }
             set
