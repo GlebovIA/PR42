@@ -4,11 +4,11 @@ namespace PR42.Classes
 {
     public class Connection
     {
-        private static readonly string config = "" +
+        private static readonly string config = "server=HOME-PC\\MYSERVER;" +
             "Trusted_Connection=No;" +
             "DataBase=ShopContent;" +
-            "User=;" +
-            "PWD=";
+            "User=sa;" +
+            "PWD=sa";
         public static SqlConnection OpenConnection()
         {
             SqlConnection connection = new SqlConnection(config);

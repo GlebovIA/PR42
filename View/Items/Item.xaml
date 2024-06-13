@@ -44,7 +44,7 @@
             <Label Content="Категория:" VerticalAlignment="Top" Margin="10, 66, 10, 0" Grid.Column="1"/>
             <TextBox Text="{Binding Category.Name}" Height="25" VerticalAlignment="Top" Margin="10, 92, 10, 0" VerticalContentAlignment="Center" IsEnabled="False" Grid.ColumnSpan="2"/>
             <Label Content="Описание:" VerticalAlignment="Top" Margin="10, 122, 10, 0" Grid.ColumnSpan="2"/>
-            <TextBox Text="{Binding Name}" Height="25" VerticalAlignment="Top" Margin="10, 150, 10, 0" VerticalContentAlignment="Center" IsEnabled="False" Grid.ColumnSpan="2"/>
+            <TextBox Text="{Binding Name}" Height="25" VerticalAlignment="Top" Margin="10, 150, 10, 10" VerticalContentAlignment="Center" IsEnabled="False" Grid.ColumnSpan="2"/>
         </Grid>
     </Grid>
 </UserControl>

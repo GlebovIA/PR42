@@ -19,8 +19,8 @@ namespace PR42.Classes
         }
         public bool CanExecute(object parameter)
         {
-            return this.canExecute == null && this.canExecute(parameter);
+            return this.canExecute == null || this.canExecute(parameter);
         }
-        private void Execute(object parameter) => this.execute(parameter);
+        public void Execute(object parameter) => this.execute(parameter);
     }
 }

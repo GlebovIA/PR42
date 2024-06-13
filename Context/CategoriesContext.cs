@@ -11,7 +11,7 @@ namespace PR42.Context
         {
             ObservableCollection<CategoriesContext> allCategories = new ObservableCollection<CategoriesContext>();
             SqlConnection connection;
-            SqlDataReader dataCategories = Connection.Query("Select from [dbo].[Categories]", out connection);
+            SqlDataReader dataCategories = Connection.Query("Select * from [dbo].[Categories]", out connection);
             while (dataCategories.Read())
             {
                 allCategories.Add(new CategoriesContext()

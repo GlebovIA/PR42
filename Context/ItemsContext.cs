@@ -1,6 +1,5 @@
 ﻿using PR42.Classes;
 using PR42.Modell;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace PR42.Context
             ObservableCollection<ItemsContext> allItems = new ObservableCollection<ItemsContext>();
             ObservableCollection<CategoriesContext> allCategories = CategoriesContext.AllCategories();
             SqlConnection connection;
-            SqlDataReader dataItems = Connection.Query("Select from [dbo].[Items]", out connection);
+            SqlDataReader dataItems = Connection.Query("Select * from [dbo].[Items]", out connection);
             while (dataItems.Read())
             {
                 allItems.Add(new ItemsContext()
@@ -28,7 +27,7 @@ namespace PR42.Context
                     Name = dataItems.GetString(1),
                     Price = dataItems.GetDouble(2),
                     Description = dataItems.GetString(3),
-                    Category = dataItems.IsDBNull(4) ? null : allCategories.Where(x => x.Id = dataItems.GetInt32(4)).First()
+                    Category = dataItems.IsDBNull(4) ? null : allCategories.Where(x => x.Id == dataItems.GetInt32(4)).First()
                 });
             }
             Connection.CloseConnection(connection);
@@ -42,7 +41,7 @@ namespace PR42.Context
                 SqlDataReader dataItems = Connection.Query("Insert into " +
                     "[dbo].[Items](" +
                     "Name, " +
-                    "Price " +
+                    "Price, " +
                     "Description) " +
                     "OUTPUT Inserted.Id " +
                     "Values (" +
@@ -85,7 +84,7 @@ namespace PR42.Context
                 return new RelayCommand(obj =>
                 {
                     Category = CategoriesContext.AllCategories().Where(x => x.Id == Category.Id).First();
-                    Save();
+                    Save(true);
                 });
             }
         }

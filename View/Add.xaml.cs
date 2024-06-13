@@ -13,7 +13,7 @@ namespace PR42.View
             InitializeComponent();
             DataContext = new
             {
-                item = Context,,
+                item = Context,
                 categories = new VMCategories()
             };
         }
