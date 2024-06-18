@@ -32,7 +32,7 @@
             <ComboBox x:Name="categoriesCB" ItemsSource="{Binding categories.Categories}" DisplayMemberPath="Name" SelectedValue="{Binding item.Category.Id}" SelectedValuePath="Id" Height="25" VerticalAlignment="Top" Margin="10, 92, 10, 0" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
             <Label Content="Описание:" VerticalAlignment="Top" Margin="10, 122, 10, 0" Grid.ColumnSpan="2"/>
             <TextBox Text="{Binding item.Name}" Height="25" VerticalAlignment="Top" Margin="10, 150, 10, 0" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
-            <Button Content="Сохраеить" Width="100" Height="25" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Command="{Binding item.OnSave}"> 
+            <Button x:Name="saveBtn" Content="Сохраеить" Width="100" Height="25" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1" Command="{Binding item.OnSave}"> 
                 <Button.Effect>
                     <DropShadowEffect Direction="270" BlurRadius="5" ShadowDepth="2" Opacity="0.5"/>
                 </Button.Effect>

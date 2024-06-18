@@ -8,6 +8,7 @@ namespace PR42.Context
 {
     public class ItemsContext : Items
     {
+        private static bool _isNew = true;
         public ItemsContext(bool save = false)
         {
             if (save) save = true;
@@ -33,21 +34,23 @@ namespace PR42.Context
             Connection.CloseConnection(connection);
             return allItems;
         }
-        public void Save(bool New = false)
+        public void Save()
         {
             SqlConnection connection;
-            if (New)
+            if (_isNew)
             {
                 SqlDataReader dataItems = Connection.Query("Insert into " +
-                    "[dbo].[Items](" +
+                    "[dbo].[Items] (" +
                     "Name, " +
                     "Price, " +
-                    "Description) " +
+                    "Description, " +
+                    "Category) " +
                     "OUTPUT Inserted.Id " +
                     "Values (" +
                     $"N'{Name}', " +
                     $"{Price}, " +
-                    $"N'{Description}')", out connection);
+                    $"N'{Description}', " +
+                    $"{Category.Id})", out connection);
                 dataItems.Read();
                 Id = dataItems.GetInt32(0);
             }
@@ -58,7 +61,7 @@ namespace PR42.Context
                     $"Name = N'{Name}', " +
                     $"Price = {Price}, " +
                     $"Description = N'{Description}', " +
-                    $"IdCategory = {Category.Id} " +
+                    $"Category = {Category.Id} " +
                     "Where " +
                     $"Id = {Id}", out connection);
             }
@@ -75,7 +78,11 @@ namespace PR42.Context
         }
         public RelayCommand OnEdit
         {
-            get { return new RelayCommand(obj => MainWindow.init.frame.Navigate(new View.Add(this))); }
+            get
+            {
+                _isNew = false;
+                return new RelayCommand(obj => MainWindow.init.frame.Navigate(new View.Add(this)));
+            }
         }
         public RelayCommand OnSave
         {
@@ -84,7 +91,8 @@ namespace PR42.Context
                 return new RelayCommand(obj =>
                 {
                     Category = CategoriesContext.AllCategories().Where(x => x.Id == Category.Id).First();
-                    Save(true);
+                    _isNew = _isNew != true ? _isNew : true;
+                    Save();
                 });
             }
         }

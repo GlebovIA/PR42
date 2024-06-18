@@ -5,7 +5,6 @@ namespace PR42.Classes
     public class Connection
     {
         private static readonly string config = "server=HOME-PC\\MYSERVER;" +
-            "Trusted_Connection=No;" +
             "DataBase=ShopContent;" +
             "User=sa;" +
             "PWD=sa";
